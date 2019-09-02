@@ -43,7 +43,7 @@ let config = {
     COLOR_UPDATE_SPEED: 10,
     PAUSED: false,
     BACK_COLOR: { r: 0, g: 0, b: 0 , a: 0},
-    TRANSPARENT: false,
+    TRANSPARENT: true,
     BLOOM: true,
     BLOOM_ITERATIONS: 8,
     BLOOM_RESOLUTION: 256,
@@ -1239,9 +1239,9 @@ function drawColor (fbo, color) {
 }
 
 function drawCheckerboard (fbo) {
-    checkerboardProgram.bind();
+    
     gl.clearColor(0.0, 0.0, 0.0, 0.0);
-    gl.uniform1f(checkerboardProgram.uniforms.aspectRatio, canvas.width / canvas.height);
+    
     blit(fbo);
 }
 

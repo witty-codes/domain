@@ -105,7 +105,7 @@ function getWebGLContext (canvas) {
         supportLinearFiltering = gl.getExtension('OES_texture_half_float_linear');
     }
 
-    gl.clearColor(0.0, 0.0, 0.0, 1.0);
+    gl.clearColor(0.0, 0.0, 0.0, 0.0);
 
     const halfFloatTexType = isWebGL2 ? gl.HALF_FLOAT : halfFloat.HALF_FLOAT_OES;
     let formatRGBA;
@@ -178,6 +178,7 @@ function supportRenderTextureFormat (gl, internalFormat, format, type) {
 }
 
 function startGUI () {
+    
     var gui = new dat.GUI({ width: 300 });
     gui.add(config, 'DYE_RESOLUTION', { 'high': 1024, 'medium': 512, 'low': 256, 'very low': 128 }).name('quality').onFinishChange(initFramebuffers);
     gui.add(config, 'SIM_RESOLUTION', { '32': 32, '64': 64, '128': 128, '256': 256 }).name('sim resolution').onFinishChange(initFramebuffers);
@@ -1239,6 +1240,7 @@ function drawColor (fbo, color) {
 
 function drawCheckerboard (fbo) {
     checkerboardProgram.bind();
+    gl.clearColor(0.0, 0.0, 0.0, 0.0);
     gl.uniform1f(checkerboardProgram.uniforms.aspectRatio, canvas.width / canvas.height);
     blit(fbo);
 }
